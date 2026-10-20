@@ -213,8 +213,120 @@
             <span>покупатели Athena</span>
           </p>
           <p class="review-summary__note">
-            Цифры-заглушка до реальных отзывов.
+            Цифры и цитаты — заглушка до реальных отзывов.
           </p>
+
+          <div
+            class="testimonial-slider"
+            data-placeholder="true"
+            aria-roledescription="карусель"
+            aria-label="Отзывы покупателей"
+          >
+            <div class="testimonial-slider__toolbar">
+              <button
+                type="button"
+                class="testimonial-slider__btn"
+                data-dir="prev"
+                aria-controls="testimonial-track"
+                aria-label="Предыдущий отзыв"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                class="testimonial-slider__btn"
+                data-dir="next"
+                aria-controls="testimonial-track"
+                aria-label="Следующий отзыв"
+              >
+                →
+              </button>
+            </div>
+            <ul
+              id="testimonial-track"
+              class="testimonial-slider__track"
+              tabindex="0"
+            >
+              <li class="testimonial" data-placeholder="true">
+                <div class="testimonial__avatar" aria-hidden="true"></div>
+                <blockquote class="testimonial__quote">
+                  <p>
+                    Взяла зерно — домашний эспрессо наконец похож на кофейню, а
+                    не на «что-то горькое из пачки».
+                  </p>
+                </blockquote>
+                <p class="testimonial__meta">
+                  <span class="testimonial__name">Марина</span>,
+                  <span class="testimonial__city">Москва</span>
+                </p>
+              </li>
+              <li class="testimonial" data-placeholder="true">
+                <div class="testimonial__avatar" aria-hidden="true"></div>
+                <blockquote class="testimonial__quote">
+                  <p>
+                    Без лекций про терруар: на пачке понятно, чего ждать в
+                    чашке. Заказал помол — удобно.
+                  </p>
+                </blockquote>
+                <p class="testimonial__meta">
+                  <span class="testimonial__name">Илья</span>,
+                  <span class="testimonial__city">Санкт-Петербург</span>
+                </p>
+              </li>
+              <li class="testimonial" data-placeholder="true">
+                <div class="testimonial__avatar" aria-hidden="true"></div>
+                <blockquote class="testimonial__quote">
+                  <p>
+                    Устала от супермаркета. Эта пачка держит вкус неделю — варю
+                    утром и не ною.
+                  </p>
+                </blockquote>
+                <p class="testimonial__meta">
+                  <span class="testimonial__name">Катя</span>,
+                  <span class="testimonial__city">Казань</span>
+                </p>
+              </li>
+              <li class="testimonial" data-placeholder="true">
+                <div class="testimonial__avatar" aria-hidden="true"></div>
+                <blockquote class="testimonial__quote">
+                  <p>
+                    Для турки взял зерно, помолол сам. Плотный, без жжёной
+                    горечи — как раз то, что искал.
+                  </p>
+                </blockquote>
+                <p class="testimonial__meta">
+                  <span class="testimonial__name">Артём</span>,
+                  <span class="testimonial__city">Екатеринбург</span>
+                </p>
+              </li>
+              <li class="testimonial" data-placeholder="true">
+                <div class="testimonial__avatar" aria-hidden="true"></div>
+                <blockquote class="testimonial__quote">
+                  <p>
+                    Дата обжарки на пачке успокоила. Второй раз беру — уже
+                    привычка по воскресеньям.
+                  </p>
+                </blockquote>
+                <p class="testimonial__meta">
+                  <span class="testimonial__name">Оля</span>,
+                  <span class="testimonial__city">Новосибирск</span>
+                </p>
+              </li>
+              <li class="testimonial" data-placeholder="true">
+                <div class="testimonial__avatar" aria-hidden="true"></div>
+                <blockquote class="testimonial__quote">
+                  <p>
+                    Дешевле, чем каждый день в кофейне, и без снобизма в
+                    переписке. Нормальный кофе для дома.
+                  </p>
+                </blockquote>
+                <p class="testimonial__meta">
+                  <span class="testimonial__name">Дима</span>,
+                  <span class="testimonial__city">Нижний Новгород</span>
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -282,5 +394,6 @@
         </p>
       </div>
     </footer>
+    <script src="js/testimonial-slider.js" defer></script>
   </body>
 </html>

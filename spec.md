@@ -19,7 +19,7 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
 7. As a mobile visitor, I want the story readable in one column on small screens with catalog multi-col patterns only from agreed breakpoints, so that the page works on phone and desktop.
 8. As a visitor with reduced motion, I want the final loaded frame without a phased entrance, so that content and CTA are never blank or blocked.
 9. As a site owner previewing on GitHub Pages, I want `noindex` and a filled SEO contract, so that draft URLs do not compete with a future production URL.
-10. As Athena, I want Russian **ты** copy without fake testimonials or medical claims, so that tone and legal bans from Context stay intact.
+10. As Athena, I want Russian **ты** copy without medical claims; proof quotes may be marked placeholders until real reviews exist, so that the proof block is not empty on preview.
 
 ## Implementation Decisions
 
@@ -30,7 +30,7 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
 - **Audience familiarity:** cold  
 - **Primary CTA:** label **Купить** → in-page `#product` (product offer). Mid-page / final CTAs repeat the same action. Checkout href stub: `https://example.com/buy` (replace later). No lead `cta_form`.  
 - **Price:** exact **890 RUB** per 250 g pack; shown in `product_offer` only (not in first-viewport hero).  
-- **Page copy language / tone:** Russian; **ты**; calm; no barista snobbery; bans: fake testimonials, medical claims.  
+- **Page copy language / tone:** Russian; **ты**; calm; no barista snobbery; bans: medical claims. Placeholder testimonials allowed in proof only when marked `placeholder: true` (replace before production).  
 - **Analytics:** none  
 - **Stack / deploy:** prerendered static HTML on GitHub Pages; no server backend.  
 - **Chrome:** minimal header (brand name + Купить); not sticky. Footer: © Athena + one-line “not medical advice”; no INN/offer text unless added later.  
@@ -47,7 +47,8 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
 | `benefit_item` | E — ×3 |
 | `faq_item` | E — include (HTML `<details>`/`<summary>`) |
 | `trust_badge` | E — freshness / returns |
-| `cta_form`, `logo_proof`, `pricing_plan`, `how_it_works`, invented `testimonial` | skip |
+| `testimonial` | O — 6 placeholder quotes in a proof slider (`placeholder: true`) |
+| `cta_form`, `logo_proof`, `pricing_plan`, `how_it_works` | skip |
 
 ### Section order and layouts
 
@@ -66,8 +67,9 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
    - Price: 890 ₽; availability InStock  
    - Media: product-forward stills from refs A/B (and pack shot if added later)  
    - primary_cta_label: Купить (href stub `https://example.com/buy` and/or same-page confirm)  
-4. **Proof** — `review_summary`; `stack`  
+4. **Proof** — `review_summary` + `testimonial` ×6 in a horizontal slider; `stack` (slider is in-section chrome, not a rail-grid pattern)  
    - rating_avg: 4.8; review_count: 36; source_label: покупатели Athena; **placeholder: true**  
+   - Testimonials: name, city, quote; grey avatar; all **placeholder: true**; prev/next + scroll-snap; no autoplay loop
 5. **FAQ + trust** — `faq_item` + `trust_badge`; `stack`  
    - FAQ topics (copy at build): freshness/roast date; bean vs ground; shipping/returns; how strong/bitter vs café. Answers in DOM without JS.  
    - Trust: freshness and/or easy returns label.  
@@ -164,7 +166,7 @@ Sources folded in: `CONTEXT.md`, `DESIGN.md`, References lock, gap-fill Q20–Q2
 - AC-5: Exact price does not appear in the first-viewport hero. Evidence: hero vs product.
 - AC-6: Review summary shows 4.8 · 36 · покупатели Athena and is marked/treated as placeholder until replaced. Evidence: proof / `review_summary`.
 - AC-7: FAQ answers exist in HTML without JS (`details`/`summary` or equivalent); at least one `trust_badge` for freshness or returns. Evidence: FAQ / trust.
-- AC-8: No lead form; no invented testimonial farm; no medical claims in copy. Evidence: page + footer disclaimer line.
+- AC-8: No lead form; no medical claims; proof testimonials (if present) are marked placeholder and sit in a slider of 5–7 quotes. Evidence: page + proof + footer disclaimer.
 - AC-9: Multi-col sections use only catalog patterns (`thirds`, `split-2-1`, `media-row-2` for benefits lifestyle stills); other story sections `stack`; rail/gutter per implement `grid.md`. Evidence: section layouts.
 - AC-10: Motion id is `load-atmosphere` with Phase 1 plate then Phase 2 chrome + hero cascade, freeze after; CTA readable within ~2s when motion allowed. Evidence: load entrance.
 - AC-11: Under `prefers-reduced-motion`, the instant final frame is shown (no blank Phase-2 content). Evidence: reduced-motion behavior.
