@@ -28,7 +28,7 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
 - **Type:** selling  
 - **Theme:** `ecommerce_product`  
 - **Audience familiarity:** cold  
-- **Primary CTA:** label **Купить** → in-page `#product` (hero/header). Product + final **Купить** open a buy stub **modal** (email + зерно/помол; variant radios sync with product card via shared `name="variant"`). Form does not submit anywhere: submit hover tooltip explains stub; submit click closes modal. No page-level lead `cta_form`.  
+- **Primary CTA:** label **Купить** → in-page `#product` (hero/header). Product + final **Купить** open a buy stub **modal** (email + зерно/помол). Variant groups are separate (`variant` / `modal-variant`) and stay in sync via JS both ways, including empty selection. Form does not submit anywhere: submit hover tooltip explains stub; submit click closes modal. No page-level lead `cta_form`.  
 - **Price:** exact **890 RUB** per 250 g pack; shown in `product_offer` only (not in first-viewport hero).  
 - **Page copy language / tone:** Russian; **ты**; calm; no barista snobbery; bans: medical claims. Placeholder testimonials allowed in proof only when marked `placeholder: true` (replace before production).  
 - **Analytics:** none  

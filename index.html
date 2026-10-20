@@ -175,10 +175,10 @@
                 <span class="product__price">890&nbsp;₽</span>
                 <span class="product__stock">В наличии</span>
               </p>
-              <fieldset class="product__variants">
+              <fieldset class="product__variants" data-variant-scope="page">
                 <legend>Формат</legend>
                 <label class="choice">
-                  <input type="radio" name="variant" value="bean" checked />
+                  <input type="radio" name="variant" value="bean" />
                   Зерно
                 </label>
                 <label class="choice">
@@ -430,14 +430,17 @@
               placeholder="you@example.com"
             />
           </div>
-          <fieldset class="product__variants buy-form__variants">
+          <fieldset
+            class="product__variants buy-form__variants"
+            data-variant-scope="modal"
+          >
             <legend>Формат</legend>
             <label class="choice">
-              <input type="radio" name="variant" value="bean" />
+              <input type="radio" name="modal-variant" value="bean" />
               Зерно
             </label>
             <label class="choice">
-              <input type="radio" name="variant" value="ground" />
+              <input type="radio" name="modal-variant" value="ground" />
               Помол
             </label>
           </fieldset>

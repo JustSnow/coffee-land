@@ -6,7 +6,34 @@
   const form = modal.querySelector("[data-buy-form]");
   const openers = document.querySelectorAll("[data-open-buy-modal]");
   const closers = modal.querySelectorAll("[data-close-buy-modal]");
+  const pageRadios = [
+    ...document.querySelectorAll(
+      '[data-variant-scope="page"] input[name="variant"]'
+    ),
+  ];
+  const modalRadios = [
+    ...modal.querySelectorAll(
+      '[data-variant-scope="modal"] input[name="modal-variant"]'
+    ),
+  ];
   let lastFocus = null;
+
+  const selectedValue = (radios) =>
+    radios.find((radio) => radio.checked)?.value ?? null;
+
+  const applyValue = (radios, value) => {
+    radios.forEach((radio) => {
+      radio.checked = value !== null && radio.value === value;
+    });
+  };
+
+  const syncPageToModal = () => {
+    applyValue(modalRadios, selectedValue(pageRadios));
+  };
+
+  const syncModalToPage = () => {
+    applyValue(pageRadios, selectedValue(modalRadios));
+  };
 
   const focusables = () =>
     [
@@ -17,6 +44,7 @@
 
   const open = () => {
     lastFocus = document.activeElement;
+    syncPageToModal();
     modal.hidden = false;
     document.body.classList.add("modal-open");
     const email = modal.querySelector("#buy-email");
@@ -31,6 +59,14 @@
       lastFocus.focus();
     }
   };
+
+  pageRadios.forEach((radio) => {
+    radio.addEventListener("change", syncPageToModal);
+  });
+
+  modalRadios.forEach((radio) => {
+    radio.addEventListener("change", syncModalToPage);
+  });
 
   openers.forEach((btn) => {
     btn.addEventListener("click", open);
