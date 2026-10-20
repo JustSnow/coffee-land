@@ -87,11 +87,11 @@ Lifestyle refs **C** and **D** may appear as atmospheric stills in benefits or b
 ### Motion
 
 - Id: **`load-atmosphere`** (co-designed; no dedicated load refs).  
-- Phase 1: warm-dark vignette/grain plate (bean tones); offer/CTA not in focus; ≤ ~0.8–1.2s.  
-- Phase 2: chrome + nested hero cascade (headline → support → CTA); total ≤ ~2s until CTA readable; then freeze.  
+- Kick: `js/load-atmosphere.js` sets `motion-pending` → `motion-play` (double rAF). No-JS / `prefers-reduced-motion: reduce` → final frame only.  
+- Phase 1: warm plate + hero media scale/fade in; offer/CTA not yet.  
+- Phase 2: veil + header chrome + nested hero cascade (headline → support → CTA); total ≤ ~2s until CTA readable; then freeze.  
 - Secondary beat: light primary-CTA hover ≤ ~0.2s.  
-- No Ken Burns / ambient loops.  
-- `prefers-reduced-motion`: instant final frame.
+- No Ken Burns / ambient loops.
 
 ### SEO contract
 

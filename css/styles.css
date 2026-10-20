@@ -638,7 +638,8 @@ input:focus-visible {
   color: var(--color-text-muted);
 }
 
-/* Load atmosphere — final frame is default; animate only if motion OK */
+/* Load atmosphere — default CSS = final frame (no-JS / reduced-motion).
+   html.motion-pending → hold from-state; html.motion-play → run phases. */
 .load-plate {
   position: fixed;
   inset: 0;
@@ -646,45 +647,61 @@ input:focus-visible {
   pointer-events: none;
   background:
     radial-gradient(
-      ellipse at 30% 40%,
-      rgba(60, 40, 28, 0.55),
-      transparent 55%
+      ellipse at 50% 35%,
+      rgba(196, 165, 116, 0.28),
+      transparent 50%
     ),
-    linear-gradient(160deg, #1a1210 0%, #0f0b0a 100%);
+    linear-gradient(165deg, #2a1c14 0%, #0f0b0a 55%, #1a1210 100%);
   opacity: 0;
   visibility: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .load-plate {
-    animation: plate-in 1s cubic-bezier(0.25, 1, 0.5, 1) both;
-  }
+html.motion-pending .load-plate {
+  opacity: 1;
+  visibility: visible;
+}
 
-  /* Hidden until Phase 2 fills in — avoids visible→0 blink when animation attaches */
-  .load-chrome,
-  .hero-cascade {
-    opacity: 0;
-  }
+html.motion-pending .load-chrome,
+html.motion-pending .hero-cascade,
+html.motion-pending .hero__media,
+html.motion-pending .hero__veil {
+  opacity: 0;
+}
 
-  .load-chrome {
-    animation: chrome-in 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.85s both;
-  }
+html.motion-pending .hero__media {
+  transform: scale(1.08);
+}
 
-  .hero-cascade {
-    animation: cascade-in 0.65s cubic-bezier(0.25, 1, 0.5, 1) both;
-  }
+html.motion-play .load-plate {
+  animation: plate-in 1.05s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
 
-  .hero-cascade--1 {
-    animation-delay: 0.95s;
-  }
+html.motion-play .hero__media {
+  animation: hero-media-in 1.15s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
 
-  .hero-cascade--2 {
-    animation-delay: 1.08s;
-  }
+html.motion-play .hero__veil {
+  animation: chrome-in 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.35s both;
+}
 
-  .hero-cascade--3 {
-    animation-delay: 1.2s;
-  }
+html.motion-play .load-chrome {
+  animation: chrome-in 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.75s both;
+}
+
+html.motion-play .hero-cascade {
+  animation: cascade-in 0.7s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+html.motion-play .hero-cascade--1 {
+  animation-delay: 0.85s;
+}
+
+html.motion-play .hero-cascade--2 {
+  animation-delay: 1s;
+}
+
+html.motion-play .hero-cascade--3 {
+  animation-delay: 1.15s;
 }
 
 @keyframes plate-in {
@@ -692,13 +709,24 @@ input:focus-visible {
     opacity: 1;
     visibility: visible;
   }
-  70% {
+  55% {
     opacity: 1;
     visibility: visible;
   }
   100% {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+@keyframes hero-media-in {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -714,11 +742,33 @@ input:focus-visible {
 @keyframes cascade-in {
   from {
     opacity: 0;
-    transform: translateY(1.25rem);
+    transform: translateY(1.35rem);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-pending .load-plate,
+  html.motion-play .load-plate {
+    animation: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  html.motion-pending .load-chrome,
+  html.motion-pending .hero-cascade,
+  html.motion-pending .hero__media,
+  html.motion-pending .hero__veil,
+  html.motion-play .load-chrome,
+  html.motion-play .hero-cascade,
+  html.motion-play .hero__media,
+  html.motion-play .hero__veil {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
 
