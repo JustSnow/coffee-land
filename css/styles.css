@@ -721,3 +721,171 @@ input:focus-visible {
     transform: translateY(0);
   }
 }
+
+/* Buy stub modal — palette/type from DESIGN */
+.modal[hidden] {
+  display: none;
+}
+
+.modal:not([hidden]) {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 11, 10, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: var(--rail);
+  max-width: calc(100% - 2 * var(--gutter));
+  margin: 10vh auto 2rem;
+  padding: 1.5rem 1.35rem 1.75rem;
+  background: var(--color-stone);
+  color: var(--color-text);
+  border: 1px solid var(--color-stone-soft);
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-control);
+}
+
+@media (min-width: 768px) {
+  .modal__dialog {
+    max-width: 28rem;
+    margin-inline: auto;
+    padding: 1.75rem 1.75rem 2rem;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.modal__close:hover {
+  color: var(--color-accent);
+  border-color: var(--color-stone-soft);
+}
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  margin: 0 2.5rem 0.5rem 0;
+  color: var(--color-text);
+}
+
+.modal__lead {
+  margin: 0 0 1.25rem;
+  color: var(--color-text-muted);
+}
+
+.field {
+  margin-bottom: 1.15rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.field input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--color-stone-soft);
+  border-radius: var(--radius-control);
+  background: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  box-shadow: var(--shadow-control);
+  transition: border-color 0.2s ease;
+}
+
+.field input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.field input:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.buy-form__variants {
+  margin-bottom: 1.35rem;
+}
+
+.buy-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-s);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip__bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.5rem);
+  z-index: 2;
+  width: max-content;
+  max-width: min(16rem, 70vw);
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-control);
+  background: var(--color-base-deep);
+  border: 1px solid var(--color-stone-soft);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  line-height: 1.35;
+  text-align: center;
+  transform: translateX(-50%) translateY(0.15rem);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+}
+
+.tooltip:hover .tooltip__bubble,
+.tooltip:focus-within .tooltip__bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button.btn {
+  appearance: none;
+  -webkit-appearance: none;
+}

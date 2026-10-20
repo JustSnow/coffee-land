@@ -6,7 +6,7 @@ Urban coffee drinkers (~25–40) are stuck between mediocre supermarket beans an
 
 ## Solution
 
-A single selling landing for **Athena** that presents one clear specialty-coffee SKU (whole bean or ground), shows why it fits “café at home,” and drives the primary action **Купить** to the on-page product offer (checkout may be an external stub until a real shop URL exists).
+A single selling landing for **Athena** that presents one clear specialty-coffee SKU (whole bean or ground), shows why it fits “café at home,” and drives purchase via an on-page product offer plus a buy stub modal (no real checkout).
 
 ## User Stories
 
@@ -28,7 +28,7 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
 - **Type:** selling  
 - **Theme:** `ecommerce_product`  
 - **Audience familiarity:** cold  
-- **Primary CTA:** label **Купить** → in-page `#product` (product offer). Mid-page / final CTAs repeat the same action. Checkout href stub: `https://example.com/buy` (replace later). No lead `cta_form`.  
+- **Primary CTA:** label **Купить** → in-page `#product` (hero/header). Product + final **Купить** open a buy stub **modal** (email + зерно/помол; variant radios sync with product card via shared `name="variant"`). Form does not submit anywhere: submit hover tooltip explains stub; submit click closes modal. No page-level lead `cta_form`.  
 - **Price:** exact **890 RUB** per 250 g pack; shown in `product_offer` only (not in first-viewport hero).  
 - **Page copy language / tone:** Russian; **ты**; calm; no barista snobbery; bans: medical claims. Placeholder testimonials allowed in proof only when marked `placeholder: true` (replace before production).  
 - **Analytics:** none  
@@ -66,14 +66,15 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
    - Variants: зерно \| помол  
    - Price: 890 ₽; availability InStock  
    - Media: product-forward stills from refs A/B (and pack shot if added later)  
-   - primary_cta_label: Купить (href stub `https://example.com/buy` and/or same-page confirm)  
+   - primary_cta_label: Купить → opens buy modal stub  
+
 4. **Proof** — `review_summary` + `testimonial` ×6 in a horizontal slider; `stack` (slider is in-section chrome, not a rail-grid pattern)  
    - rating_avg: 4.8; review_count: 36; source_label: покупатели Athena; **placeholder: true**  
    - Testimonials: name, city, quote; grey avatar; all **placeholder: true**; mobile-first flex peek slider (≈85% slide → 2 @768 → 3 @1024), prev/next + scroll-snap; no autoplay loop
 5. **FAQ + trust** — `faq_item` + `trust_badge`; `stack`  
    - FAQ topics (copy at build): freshness/roast date; bean vs ground; shipping/returns; how strong/bitter vs café. Answers in DOM without JS.  
    - Trust: freshness and/or easy returns label.  
-6. **Final CTA** — repeat Купить → `#product` / buy stub; `stack`
+6. **Final CTA** — repeat Купить → buy modal stub; `stack`
 
 Lifestyle refs **C** and **D** may appear as atmospheric stills in benefits or beside FAQ — not as hero.
 
@@ -160,13 +161,13 @@ Sources folded in: `CONTEXT.md`, `DESIGN.md`, References lock, gap-fill Q20–Q2
 ## Acceptance Criteria
 
 - AC-1: First viewport shows brand Athena, H1 «Кофейня дома — без снобизма», one support line, and primary CTA «Купить» with a real hero photo (ref A). Evidence: hero / `hero_offer`.
-- AC-2: Primary CTA label is «Купить» and navigates to `#product` (and/or buy stub); final CTA repeats the same action and label. Evidence: hero + final CTA.
+- AC-2: Hero/header «Купить» → `#product`; product + final «Купить» open the buy modal stub (same label). Evidence: hero + product + final CTA + modal.
 - AC-3: Benefits section contains exactly three `benefit_item` outcomes (not dry roast specs). Evidence: benefits; `layout: thirds`.
 - AC-4: `#product` shows Athena Espresso Blend, 250 g, зерно/помол variants, exact **890 ₽**, InStock, and «Купить». Evidence: `product_offer`; `layout: split-2-1`.
 - AC-5: Exact price does not appear in the first-viewport hero. Evidence: hero vs product.
 - AC-6: Review summary shows 4.8 · 36 · покупатели Athena and is marked/treated as placeholder until replaced. Evidence: proof / `review_summary`.
 - AC-7: FAQ answers exist in HTML without JS (`details`/`summary` or equivalent); at least one `trust_badge` for freshness or returns. Evidence: FAQ / trust.
-- AC-8: No lead form; no medical claims; proof testimonials (if present) are marked placeholder and sit in a slider of 5–7 quotes. Evidence: page + proof + footer disclaimer.
+- AC-8: No page-level lead form; buy stub modal (email + synced variant) does not POST; no medical claims; proof testimonials marked placeholder. Evidence: page + modal + proof + footer.
 - AC-9: Multi-col sections use only catalog patterns (`thirds`, `split-2-1`, `media-row-2` for benefits lifestyle stills); other story sections `stack`; rail/gutter per implement `grid.md`. Evidence: section layouts.
 - AC-10: Motion id is `load-atmosphere` with Phase 1 plate then Phase 2 chrome + hero cascade, freeze after; CTA readable within ~2s when motion allowed. Evidence: load entrance.
 - AC-11: Under `prefers-reduced-motion`, the instant final frame is shown (no blank Phase-2 content). Evidence: reduced-motion behavior.
@@ -177,7 +178,7 @@ Sources folded in: `CONTEXT.md`, `DESIGN.md`, References lock, gap-fill Q20–Q2
 
 ## Out of Scope
 
-- Real payment/checkout, cart, CRM, email capture backend  
+- Real payment/checkout, cart, CRM, email capture backend (buy modal is a non-submitting stub)  
 - Analytics IDs, ads pixels, A/B frameworks  
 - Sticky nav, sitemap.xml, robots.txt strategy, hreflang  
 - FAQPage / QAPage rich-result JSON-LD  
@@ -188,5 +189,5 @@ Sources folded in: `CONTEXT.md`, `DESIGN.md`, References lock, gap-fill Q20–Q2
 ## Further Notes
 
 - Reference lock: four assets in project `assets/` — A hero; B texture; C/D lifestyle below fold; no load-entrance refs (motion co-designed).  
-- Replace checkout stub and review placeholders before production.  
+- Replace buy-modal stub with real checkout and review placeholders before production.  
 - CONTEXT.md and DESIGN.md were inputs; **this `spec.md` is the single build source of truth** after confirmation.

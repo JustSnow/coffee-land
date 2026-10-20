@@ -187,12 +187,13 @@
                 </label>
               </fieldset>
               <p>
-                <a
+                <button
+                  type="button"
                   class="btn btn--primary"
-                  href="https://example.com/buy"
-                  rel="noopener noreferrer"
-                  >Купить</a
+                  data-open-buy-modal
                 >
+                  Купить
+                </button>
               </p>
             </div>
           </div>
@@ -375,16 +376,88 @@
           <h2 id="final-cta-title">Готов заваривать дома?</h2>
           <p>Одна пачка Athena Espresso Blend — 250&nbsp;г, зерно или помол.</p>
           <p>
-            <a
+            <button
+              type="button"
               class="btn btn--primary"
-              href="https://example.com/buy"
-              rel="noopener noreferrer"
-              >Купить</a
+              data-open-buy-modal
             >
+              Купить
+            </button>
           </p>
         </div>
       </section>
     </main>
+
+    <div
+      class="modal"
+      id="buy-modal"
+      hidden
+      data-buy-modal
+    >
+      <div
+        class="modal__backdrop"
+        data-close-buy-modal
+        aria-hidden="true"
+      ></div>
+      <div
+        class="modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="buy-modal-title"
+        tabindex="-1"
+      >
+        <button
+          type="button"
+          class="modal__close"
+          data-close-buy-modal
+          aria-label="Закрыть"
+        >
+          ×
+        </button>
+        <h2 id="buy-modal-title" class="modal__title">Оформить заказ</h2>
+        <p class="modal__lead">
+          Заглушка: укажи почту и формат — как в карточке товара.
+        </p>
+        <form class="buy-form" data-buy-form novalidate>
+          <div class="field">
+            <label for="buy-email">Почта</label>
+            <input
+              id="buy-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+            />
+          </div>
+          <fieldset class="product__variants buy-form__variants">
+            <legend>Формат</legend>
+            <label class="choice">
+              <input type="radio" name="variant" value="bean" />
+              Зерно
+            </label>
+            <label class="choice">
+              <input type="radio" name="variant" value="ground" />
+              Помол
+            </label>
+          </fieldset>
+          <div class="buy-form__actions">
+            <span class="tooltip">
+              <button
+                type="submit"
+                class="btn btn--primary"
+                aria-describedby="buy-stub-tip"
+              >
+                Отправить
+              </button>
+              <span id="buy-stub-tip" class="tooltip__bubble" role="tooltip">
+                Это заглушка — форма никуда не уходит
+              </span>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <footer class="site-footer load-chrome">
       <div class="rail">
@@ -395,5 +468,6 @@
       </div>
     </footer>
     <script src="js/testimonial-slider.js" defer></script>
+    <script src="js/buy-modal.js" defer></script>
   </body>
 </html>
