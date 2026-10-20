@@ -69,7 +69,7 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
    - primary_cta_label: Купить (href stub `https://example.com/buy` and/or same-page confirm)  
 4. **Proof** — `review_summary` + `testimonial` ×6 in a horizontal slider; `stack` (slider is in-section chrome, not a rail-grid pattern)  
    - rating_avg: 4.8; review_count: 36; source_label: покупатели Athena; **placeholder: true**  
-   - Testimonials: name, city, quote; grey avatar; all **placeholder: true**; prev/next + scroll-snap; no autoplay loop
+   - Testimonials: name, city, quote; grey avatar; all **placeholder: true**; mobile-first flex peek slider (≈85% slide → 2 @768 → 3 @1024), prev/next + scroll-snap; no autoplay loop
 5. **FAQ + trust** — `faq_item` + `trust_badge`; `stack`  
    - FAQ topics (copy at build): freshness/roast date; bean vs ground; shipping/returns; how strong/bitter vs café. Answers in DOM without JS.  
    - Trust: freshness and/or easy returns label.  
