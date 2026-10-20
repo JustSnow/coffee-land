@@ -58,6 +58,7 @@ A single selling landing for **Athena** that presents one clear specialty-coffee
    - Hero media: ref **A** (beans + burlap on wood)  
 2. **Benefits** — `benefit_item` ×3; `layout: thirds`  
    - Outcomes aligned to pain: reliable taste at home; fresh roast without snobbery; clear profile vs supermarket/café spend (copy finalized at build from this intent).  
+   - Optional lifestyle stills (refs C/D) in the same section: `layout: media-row-2`.  
 3. **Product** — `product_offer`; `layout: split-2-1` (media \| offer); id `#product`  
    - Title: Athena Espresso Blend  
    - Description: 250 g specialty pack; café-at-home espresso-leaning blend  
@@ -164,7 +165,7 @@ Sources folded in: `CONTEXT.md`, `DESIGN.md`, References lock, gap-fill Q20–Q2
 - AC-6: Review summary shows 4.8 · 36 · покупатели Athena and is marked/treated as placeholder until replaced. Evidence: proof / `review_summary`.
 - AC-7: FAQ answers exist in HTML without JS (`details`/`summary` or equivalent); at least one `trust_badge` for freshness or returns. Evidence: FAQ / trust.
 - AC-8: No lead form; no invented testimonial farm; no medical claims in copy. Evidence: page + footer disclaimer line.
-- AC-9: Multi-col sections use only catalog patterns (`thirds`, `split-2-1`); other story sections `stack`; rail/gutter per implement `grid.md`. Evidence: section layouts.
+- AC-9: Multi-col sections use only catalog patterns (`thirds`, `split-2-1`, `media-row-2` for benefits lifestyle stills); other story sections `stack`; rail/gutter per implement `grid.md`. Evidence: section layouts.
 - AC-10: Motion id is `load-atmosphere` with Phase 1 plate then Phase 2 chrome + hero cascade, freeze after; CTA readable within ~2s when motion allowed. Evidence: load entrance.
 - AC-11: Under `prefers-reduced-motion`, the instant final frame is shown (no blank Phase-2 content). Evidence: reduced-motion behavior.
 - AC-12: `seo.environment` is preview and `seo.indexing` is noindex; `html_lang` is `ru`; single H1 matches `seo.on_page.h1`. Evidence: `<head>` / H1.
